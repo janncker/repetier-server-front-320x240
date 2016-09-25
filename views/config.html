@@ -1,0 +1,39 @@
+<div ui-view="">
+    <div class="settings" dragme>
+
+        <div class="row" style="margin-bottom:15px;">
+            <div class="col-xs-12">
+                <div class="progress" style="position:relative">
+                    <div class="progress-bar active" ng-class="disk.class" role="progressbar" aria-valuenow="{{disk.usage}}" aria-valuemin="0" aria-valuemax="100" style="width: {{disk.usage}}%"></div>
+                    <div class="metertext" style="top:2px;font-size:15px;"><?php _('Free Disk Space') ?>:
+                        {{disk.available | byte}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group condensed">
+            <div class="list-group-item headline"><i class="rs rs-printer"></i> <?php _('Select Printer') ?> </div>
+            <div class="row list-group-item" style="padding-bottom: 15px;">
+                <div class="col-6 center" ng-repeat="p in printerList track by $index">
+                    <div class="btn btn-icon buttonsettings" ng-class="{'btn-success':p.slug==activeSlug,'btn-danger':p.slug!=activeSlug}" ng-click="selectPrinter(p)">
+                        {{p.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 center">
+                <a ui-sref="config.basic" class="btn btn-icon btn-primary buttonsettings"><?php _('Basic Settings') ?></a>
+            </div>
+            <div class="col-6 center">
+                <a ui-sref="config.network" class="btn btn-icon btn-primary buttonsettings"><?php _('Network') ?></a>
+            </div>
+            <div class="col-6 center" ng-repeat="c in externalCommands track by $index">
+                <div ng-click="runExternalCommand(c.id)" class="btn btn-icon btn-primary buttonsettings">{{c.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

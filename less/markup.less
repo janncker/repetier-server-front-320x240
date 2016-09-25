@@ -1,0 +1,1138 @@
+body {
+  margin: 0;
+  font-family: @TextFontFace;
+  background:#ffffff;
+  overflow:hidden;
+}
+.fullpage {
+  background: @Background;
+  background-size: @ScreenWidth @ScreenHeight;
+  background-attachment: fixed;
+  overflow:hidden;
+  padding: @BodyPadding;
+  width:@ScreenWidth;
+  height:@ScreenHeight;
+  position:relative;
+  margin:0 auto;
+}
+
+@ListHeight: @TabHeight + 3px;
+@TabDistance2: @TabDistance / 2;
+@ContentHeight: @ScreenHeight - 1px - (2 * @BodyPadding) - @ListHeight;
+
+h1 {
+  font-size: @font-size-h1;
+  margin: @h1Margin;
+}
+
+h2 {
+  font-size: @font-size-h2;
+  margin: @h2Margin;
+}
+
+h3 {
+  font-size: @font-size-h3;
+  margin: @h3Margin;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.bigtabs {
+  font: bold @TabFontSize @TabFontFace;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0 @ListHeight @TabMarginLeft;
+  border-bottom: 1px solid @BorderColor;
+
+  li {
+    float: left;
+    height: @TabHeight;
+    background-color: @BackgroundColorInactiveTab;
+    margin: 2px @TabDistance2 0 @TabDistance2;
+    border: 1px solid @BorderColor;
+    .rounded-edge-top(@TabRadius);
+  }
+
+  a {
+    float: left;
+    display: block;
+    color: @TabTextColor;
+    text-decoration: none;
+    padding: @TabPadding;
+    .rounded-edge-top(@TabRadius);
+  }
+
+  .active {
+    border-bottom: 1px solid @TextBackground;
+    background-color: @TextBackground;
+  }
+
+  .active a:hover {
+    background-color: @TextBackground;
+  }
+
+  a:hover {
+    background: @TabBackgroundHover;
+    .rounded-edge-top(@TabRadius);
+  }
+
+  .active a {
+    color: @TabTextColorActive;
+  }
+
+}
+.modal-fit {
+  max-width: @ScreenWidth;
+  max-height: @ScreenHeight;
+  width: auto;
+  margin: auto auto;
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  img {
+    max-height:@ScreenHeight;
+    max-width:@ScreenWidth;    
+  }
+  .modal-content {
+    border:0;
+    border-radius: 0;
+    max-height:@ScreenHeight;    
+  }
+  .modal-body {
+    padding:0 !important;
+    text-align:center;
+    max-height:@ScreenHeight;
+  }
+}
+
+.pointer {
+  cursor:pointer;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.content {
+  border-width: 0;
+  border-color: @BorderColor;
+  border-style: solid;
+  padding: 0;
+  background-color: @TextBackground;
+  font: @TextSize @TextFontFace;
+  color: @TextColor;
+  height: @ContentHeight;
+  overflow:hidden;
+}
+
+.logo {
+  position: absolute;
+  height: auto;
+  width: auto;
+  left: @LogoLeft;
+  top: @LogoTop;
+}
+.margin-bottom {
+  margin-bottom:15px;
+}
+.fileselectorBottom {
+  display:block;
+  position:absolute;
+  left:0;
+  bottom:0;
+  width: @WidthFileSelectorLeft;
+  border-right: 1px solid @InnerBorderColor;
+}
+.fileselectorleft {
+  display: block;
+  float: left;
+  width: @WidthFileSelectorLeft;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid @InnerBorderColor;
+  padding: 0;
+  height: @ContentHeight - 44px;
+  margin: 0;
+  //margin-bottom:10px;
+  h3 {
+    border-bottom: 1px solid @InnerBorderColor;
+    padding: 10px 10px 10px;
+    margin: 0;
+  }
+  .entry {
+    border-bottom: 1px solid @InnerBorderColor;
+    border-top: 0;
+    vertical-align: top;
+    background-color: @TableBackgroundColor;
+    color: @TableTextColor;
+    padding: 3px 10px;
+    position: relative;
+    .date {
+      font-size: @DateFontSize;
+    }
+    .filename {
+      white-space: nowrap;
+      overflow: hidden;
+      margin-top:5px;
+    }
+  }
+  .entry:hover {
+    background: @TableBackgroundHoverColor;
+  }
+  .entry-image {
+    height: 42px;
+    img {
+      width: 64px;
+      height: 48px;
+      margin: -3px -10px;
+      position: absolute;
+    }
+    .date {
+      margin-left: 56px;
+    }
+    .filename {
+      margin-left: 56px;
+    }
+  }
+}
+
+.fileselectorinfo {
+  display: block;
+  float: right;
+  width: @ScreenWidth - @WidthFileSelectorLeft - 2 * @BodyPadding - 45;
+  height: (@ContentHeight - 2);
+  margin: 0 0px;
+  padding-right: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  h3 {
+    padding: 10px 0px 10px 17px;
+    margin: 0;
+  }
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.move-control {
+  width: @MoveControlWidth;
+  float: left;
+  padding: 15px;
+}
+
+.commands {
+  width: @CommandslWidth;
+  float: left;
+  padding: 15px;
+}
+
+.speed-temperature-controls {
+  width: @SpeedTemperatureControllWidth;
+  float: left;
+  padding: 15px;
+}
+
+.row {
+  margin-bottom: @RowMarginBottom;
+}
+
+#printinfo .row {
+  padding: @PrintinfoSpacingRow 0;
+}
+
+#printinfo .extra {
+  padding-top: @PrintinfoSpacingBlock;
+  padding-bottom: @PrintinfoSpacingBlock;
+}
+
+.col-1 {
+  width: 8.333333333%;
+}
+
+.col-2 {
+  width: 16.66666666%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33333333%;
+}
+
+.col-5 {
+  width: 41.66666666%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33333333%;
+}
+
+.col-8 {
+  width: 66.66666666%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.33333333%;
+}
+
+.col-11 {
+  width: 91.66666666%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  display: block;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.btn .caret {
+  margin-left: 0;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid transparent;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0px 12px;
+  font-size: @TabFontSize;
+  line-height: @BigButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: @SmallButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.btn-md {
+  padding: 5px 8px;
+  font-size: 16px;
+  line-height: @SmallButtonHeight;
+  height: @SmallButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+  vertical-align: middle;
+}
+
+.btn-queue {
+  padding: 0px 7px;
+  font-size: 21px;
+  line-height: @SmallButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.btn-trash {
+  padding: 0px 7px;
+  margin: 2px;
+  font-size: 16px;
+  line-height: @TrashButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.btn-icon {
+  padding: 0px 7px;
+  font-size: 18px;
+  line-height: @SmallButtonHeight;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.btn-danger {
+  color: @DangerButtonTextColor;
+  background-color: @DangerButtonBackgoundColor;
+  border-color: @DangerButtonBorderColor;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
+  color: @DangerButtonTextColorHover;
+  background-color: @DangerButtonBackgoundColorHover;
+  border-color: @DangerButtonBorderColorHover;
+}
+
+.btn-primary {
+  color: @PrimaryButtonTextColor;
+  background-color: @PrimaryButtonBackgoundColor;
+  border-color: @PrimaryButtonBorderColor;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  color: @PrimaryButtonTextColorHover;
+  background-color: @PrimaryButtonBackgoundColorHover;
+  border-color: @PrimaryButtonBorderColorHover;
+}
+
+.btn-success {
+  color: @SuccessButtonTextColor;
+  background-color: @SuccessButtonBackgoundColor;
+  border-color: @SuccessButtonBorderColor;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-success {
+  color: @SuccessButtonTextColorHover;
+  background-color: @SuccessButtonBackgoundColorHover;
+  border-color: @SuccessButtonBorderColorHover;
+}
+
+.btn-default {
+  color: @DefaultButtonTextColor;
+  background-color: @DefaultButtonBackgoundColor;
+  border-color: @DefaultButtonBorderColor;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+  color: @DefaultButtonTextColorHover;
+  background-color: @DefaultButtonBackgoundColorHover;
+  border-color: @DefaultButtonBorderColorHover;
+}
+
+.off-dark {
+  background-color: @ButtonOffBackgroundColorDark;
+  border-color: @ButtonOffBorderColor;
+}
+
+.off-bright {
+  background-color: @ButtonOffBackgroundColorBright;
+  border-color: @ButtonOffBorderColor;
+  color: @ButtonOffTextColor;
+}
+
+.off-dark:hover, .btn-dark:focus, .btn-dark.focus, .btn-dark:active, .btn-dark.active, .open > .dropdown-toggle.btn-dark {
+  background-color: @ButtonOffBackgroundColorDark;
+  border-color: @ButtonOffBorderColor;
+}
+
+.off-bright:hover, .btn-bright:focus, .btn-bright.focus, .btn-bright:active, .btn-bright.active, .open > .dropdown-toggle.btn-bright {
+  border-color: @ButtonOffBorderColor;
+}
+
+.on-dark {
+  background-color: @ButtonOnBackgroundColorDark;
+  border-color: @ButtonOnBorderColor;
+}
+
+.on-bright {
+  background-color: @ButtonOnBackgroundColorBright;
+  border-color: @ButtonOnBorderColor;
+  color: @ButtonOnTextColor;
+}
+
+.on-dark:hover, .btn-dark:focus, .btn-dark.focus, .btn-dark:active, .btn-dark.active, .open > .dropdown-toggle.btn-dark {
+  background-color: @ButtonOnBackgroundColorDark;
+  border-color: @ButtonOnBorderColor;
+}
+
+.on-bright:hover, .btn-bright:focus, .btn-bright.focus, .btn-bright:active, .btn-bright.active, .open > .dropdown-toggle.btn-bright {
+  border-color: @ButtonOnBorderColor;
+}
+
+.btn-group, .btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  .rounded-edge-br(0);
+  .rounded-edge-tr(0);
+}
+
+.btn-group > .btn:first-child {
+  margin-left: 0;
+}
+
+.btn-group > .btn, .btn-group-vertical > .btn {
+  position: relative;
+  float: left;
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  .rounded-edge-top(0);
+  .rounded-edge-bottom(0);
+}
+
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  margin-left: -1px;
+}
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+  .rounded-edge-bl(0);
+  .rounded-edge-tl(0);
+}
+
+.btn-group-justified > .btn, .btn-group-justified > .btn-group {
+  float: none;
+  display: table-cell;
+  width: 1%;
+}
+
+.btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+  cursor: not-allowed;
+  pointer-events: none;
+  .opacity(0.65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.clearfix, .row:before, .row:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.clearfix, .rowprint:before, .rowprint:after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.list-group {
+  box-sizing: border-box;
+  .headline, .headline:hover {
+    background: @HeadlineBackgroundColor !important;
+    font-weight: bold;
+  }
+}
+
+div {
+  display: block;
+}
+
+.condensed .list-group-item {
+  padding: 4px 15px;
+}
+
+.list-group-item:first-child {
+  .rounded-edge-top(@TabRadius);
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 3px 15px;
+  margin-bottom: -1px;
+  background-color: @TableBackgroundColor;
+  border: 1px solid @TableBorderColor;
+}
+
+.list-group-item:last-child {
+  margin-bottom: 0;
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.nogrid .list-group-item {
+  border: 0 !important;
+}
+
+.grid {
+  border: 1px solid @TableBorderColor;
+  .rounded-edge-top(@TabRadius);
+  .rounded-edge-bottom(@TabRadius);
+}
+
+.emergencystop {
+  position: absolute;
+  top: @EmergencyStopTop;
+  right: @EmergencyStopRight;
+  width: @EmergencyStopHeight;
+  height: @EmergencyStopWidth;
+}
+.fullscreen {
+  position: absolute;
+  top: @FullscreenTop;
+  right: @FullscreenRight;
+  font-size: @FullscreenFontsize;
+  color: @FullscreenColor;
+}
+.speed-temperature {
+  line-height: 26px;
+  vertical-align: middle;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+// Progress bar
+// -------------------------
+
+// WebKit
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+// Spec and IE10+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+.metertext {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  //top:3px;
+}
+
+// Outer container
+.progress {
+  overflow: hidden;
+  height: @line-height-computed;
+  margin-bottom: 0;
+  background-color: @progress-bg;
+  border-radius: @progress-border-radius;
+  .box-shadow(inset 0 1px 2px rgba(0, 0, 0, .1));
+}
+
+// Bar of progress
+.progress-bar {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: @ProgressBarFontSize;
+  line-height: @line-height-computed;
+  color: @progress-bar-color;
+  text-align: center;
+  background-color: @progress-bar-bg;
+  .box-shadow(inset 0 -1px 0 rgba(0, 0, 0, .15));
+  .transition(width .6s ease);
+}
+
+// Striped bars
+//
+// `.progress-striped .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar-striped` class, which you just add to an existing
+// `.progress-bar`.
+.progress-bar-striped, .progress-striped .progress-bar {
+  @color: rgba(255, 255, 255, .15);
+  @angle: 45deg;
+  background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+}
+
+// Call animation for the active one
+//
+// `.progress.active .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar.active` approach.
+.progress.active .progress-bar,
+.progress-bar.active {
+  .animation(progress-bar-stripes 2s linear infinite);
+}
+
+// Variations
+// -------------------------
+
+.progress-bar-success {
+  .progress-bar-variant(@progress-bar-success-bg);
+}
+
+.progress-bar-info {
+  .progress-bar-variant(@progress-bar-info-bg);
+}
+
+.progress-bar-warning {
+  .progress-bar-variant(@progress-bar-warning-bg);
+}
+
+.progress-bar-danger {
+  .progress-bar-variant(@progress-bar-danger-bg);
+}
+
+.center {
+  text-align: center;
+}
+
+//
+// Modals
+// --------------------------------------------------
+
+// .modal-open      - body class for killing the scroll
+// .modal           - container to scroll within
+// .modal-dialog    - positioning shell for the actual modal
+// .modal-content   - actual modal w/ bg and corners and shit
+
+// Kill the scroll on the body
+.modal-open {
+  overflow: hidden;
+}
+
+// Container that the modal scrolls within
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: @zindex-modal;
+  -webkit-overflow-scrolling: touch;
+
+  // Prevent Chrome on Windows from adding a focus outline. For details, see
+  // https://github.com/twbs/bootstrap/pull/10951.
+  outline: 0;
+
+  // When fading in the modal, animate it to slide down
+  &.fade .modal-dialog {
+    .translate(0, -25%);
+    .transition-transform(~"0.3s ease-out");
+  }
+  &.in .modal-dialog {
+    .translate(0, 0)
+  }
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+// Actual modal
+.modal-content {
+  position: relative;
+  background-color: @modal-content-bg;
+  border: 1px solid @modal-content-fallback-border-color; //old browsers fallback (ie8 etc)
+  border: 1px solid @modal-content-border-color;
+  border-radius: @border-radius-large;
+  .box-shadow(0 3px 9px rgba(0, 0, 0, .5));
+  background-clip: padding-box;
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+// Modal background
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: @zindex-modal-background;
+  background-color: @modal-backdrop-bg;
+  // Fade for backdrop
+  &.fade {
+    .opacity(0);
+  }
+  &.in {
+    .opacity(@modal-backdrop-opacity);
+  }
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+  padding: @modal-title-padding;
+  border-bottom: 1px solid @modal-header-border-color;
+  min-height: (@modal-title-padding + @modal-title-line-height);
+}
+
+// Close icon
+.modal-header .close {
+  margin-top: -2px;
+}
+
+// Title text within header
+.modal-title {
+  margin: 0;
+  line-height: @modal-title-line-height;
+  font-size: @SizeKeypadNumbersFontSize;
+}
+
+// Modal body
+// Where all modal content resides (sibling of .modal-header and .modal-footer)
+.modal-body {
+  position: relative;
+  padding: @modal-inner-padding;
+}
+
+.bigtext {
+  font-size: @SizeKeypadNumbersFontSize;
+}
+
+// Footer (for actions)
+.modal-footer {
+  padding: @modal-inner-padding;
+  text-align: right; // right align buttons
+  border-top: 1px solid @modal-footer-border-color;
+  &:extend(.clearfix all); // clear it in case folks use .pull-* classes on buttons
+
+  // Properly space out buttons
+  .btn + .btn {
+    margin-left: 5px;
+    margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+  }
+  // but override that for button groups
+  .btn-group .btn + .btn {
+    margin-left: -1px;
+  }
+  // and override it for block buttons as well
+  .btn-block + .btn-block {
+    margin-left: 0;
+  }
+}
+.btn-block {
+  display: block !important;
+}
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+// Scale up the modal
+// Automatically set modal's width for larger viewports
+.modal-dialog {
+  width: @modal-md;
+  margin: 1px auto;
+}
+
+.modal-content {
+  .box-shadow(0 5px 15px rgba(0, 0, 0, .5));
+}
+
+// Modal sizes
+.modal-sm {
+  width: @modal-sm;
+  text-align: center;
+}
+
+.modal-lg {
+  width: @modal-lg;
+}
+
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+}
+
+.close {
+  float: right;
+  font-size: @SizeKeypadNumbersFontSize;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  .opacity(.2);
+}
+
+.close:hover {
+  .opacity(.8);
+}
+
+.keypadnumbers {
+  line-height: @SizeKeypadNumbers;
+  width: @SizeKeypadNumbers;
+  height: @SizeKeypadNumbers;
+  padding: 0 4px 4px 4px;
+  margin: 0 8px 8px 0;
+  font-size: @SizeKeypadNumbersFontSize;
+  vertical-align: middle;
+}
+
+.keypadnumbersenter {
+  line-height: @SizeKeypadNumbers;
+  width: 3 * @SizeKeypadNumbers + 26;
+  height: @SizeKeypadNumbers;
+  padding: 0 4px 4px 4px;
+  margin: 0 8px 8px 0;
+  font-size: @SizeKeypadNumbersFontSize;
+  vertical-align: middle;
+}
+
+.keypadnumbersenter2 {
+  line-height: @SizeKeypadNumbers;
+  width: 2 * @SizeKeypadNumbers + 16;
+  height: @SizeKeypadNumbers;
+  padding: 0 4px 4px 4px;
+  margin: 0 8px 8px 0;
+  font-size: @SizeKeypadNumbersFontSize;
+  vertical-align: middle;
+}
+
+.yesno {
+  line-height: @SizeKeypadNumbers;
+  width: 2 * @SizeKeypadNumbers;
+  height: @SizeKeypadNumbers;
+  padding: 0 4px 4px 4px;
+  margin: 10px 12px;
+  font-size: @SizeKeypadNumbersFontSize;
+  vertical-align: middle;
+}
+
+.keypadnumbersinput {
+  line-height: @SizeKeypadNumbers;
+  width: 4 * @SizeKeypadNumbers + 24;
+  height: @SizeKeypadNumbers;
+  padding: 0 4px 4px 4px;
+  margin: 0 8px 8px 0;
+  font-size: @SizeKeypadNumbersFontSize;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+
+.units .input-group-addon {
+  width: 80px;
+}
+
+.input-group-addon:last-child {
+  border-left: 0;
+}
+
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group > .btn, .input-group-btn:last-child > .dropdown-toggle, .input-group-btn:first-child > .btn:not(:first-child), .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.input-group-addon {
+  padding: 6px 12px;
+  font-size: @SizeKeypadNumbersFontSize;
+  font-weight: 400;
+  line-height: 1;
+  color: @DefaultButtonTextColor;
+  text-align: center;
+  background-color: @DefaultButtonBackgoundColorHover;
+  border: 1px solid @DefaultButtonBorderColor;
+  .rounded-edge-br(@TabRadius);
+  .rounded-edge-tr(@TabRadius);
+}
+
+.input-group-addon, .input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.input-group-addon, .input-group-btn, .input-group .form-control {
+  display: table-cell;
+}
+
+.input-group .form-control {
+  position: relative;
+  z-index: 2;
+  //  float: left;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: @SizeKeypadNumbers - 2;
+  padding: 0px 12px;
+  font-size: @SizeKeypadNumbersFontSize;
+  line-height: @SizeKeypadNumbers - 2;
+  color: #555;
+  background-color: @DefaultButtonBackgoundColor;
+  background-image: none;
+  border: 1px solid @DefaultButtonBorderColor;
+  .rounded-edge-bl(@TabRadius);
+  .rounded-edge-tl(@TabRadius);
+  .rounded-edge-br(0);
+  .rounded-edge-tr(0);
+}
+
+.iconwidth {
+  width: @SquareButtonSize;
+  height: @SquareButtonSize;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.settings {
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: @ContentHeight - 30;
+}
+
+.nomarginbottom {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.buttonsettings {
+  width: @BigButtonWidthSettings;
+  font-size: @BigButtonFontSizeSettings;
+  line-height: @BigButtonHeightSettings;
+  margin-top: @BigButtonHeightMarginTop;
+  text-decoration: none;
+}
+
+.configbottom {
+  margin-bottom: @BigButtonHeightMarginTop;
+}
+
+// Flot Charts Containers
+
+.flot-chart {
+  display: block;
+  height: 400px;
+}
+
+.flot-chart-content {
+  width: 100%;
+  height: 100%;
+}
+
+// Disable animation of modals
+
+.modal.fade {
+  opacity: 1;
+}
+
+.modal.fade .modal-dialog, .modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+/* Animation in progressbar take much CPU% so disable */
+.progress-bar {
+  -webkit-transition: initial !important;
+  -o-transition: initial !important;
+  transition: initial !important;
+}
+
+.progress-bar.active, .progress.active .progress-bar {
+  -webkit-animation: initial !important;
+  -o-animation: initial !important;
+  animation: initial !important;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+#progressWindow {
+  position: absolute;
+  width:100%;
+  height:100%;
+
+  .progressWin {
+    background:@brand-primary;
+    border-radius: 10px;
+    padding:15px;
+    opacity: 1;
+    color:@brand-primary-text;
+    width:300px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index:5001;
+    h1 {
+      font-size:20px;
+      text-align: center;
+      margin-bottom:30px;
+    }
+  }
+}
+
+.primary-select {
+  font-size: 14px;
+  height: 44px;
+  border-radius: 0;
+  background: @brand-primary;
+  color: @brand-primary-text;
+  border: 1px solid @PrimaryButtonBorderColor;
+  option {
+    background:white;
+    color:black;
+  }
+}

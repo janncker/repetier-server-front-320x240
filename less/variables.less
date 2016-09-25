@@ -1,0 +1,310 @@
+// Main definition
+@Background: linear-gradient(#F4F4F4,#B1B1B1);
+@BorderColor: #404040;
+@ScreenWidth: 800px;
+@ScreenHeight: 480px;
+@BodyPadding: 0px;  // Padding of the main body
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+@font-family-sans-serif:  RobotoDraft;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          14px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+
+@font-size-h1:            floor((@font-size-base * 1.33)); // ~36px
+@font-size-h2:            floor((@font-size-base * 1.22)); // ~30px
+@font-size-h3:            ceil((@font-size-base * 1.11)); // ~24px
+@font-size-h4:            ceil((@font-size-base * 1.05)); // ~18px
+@font-size-h5:            @font-size-base;
+@font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.428571429; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+
+@h1Margin:10px 0 0 0;
+@h2Margin:10px 0 0 0;
+@h3Margin:10px 0 0 0;
+
+@gray-base:              #000;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+@brand-primary:         darken(#428bca, 6.5%); // #337ab7
+@brand-primary-text:    #ffffff;
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+@border-radius-base:        4px;
+@border-radius-large:       6px;
+@border-radius-small:       3px;
+
+//** Disabled cursor for form controls and buttons.
+@cursor-disabled:                not-allowed;
+
+// Tab design
+@BackgroundColorInactiveTab: #595959;
+@TabBackgroundHover: lighten(@BackgroundColorInactiveTab, 15%);
+@TabRadius: 7px;
+@TabHeight: 29px;
+@TabFontSize: 14px;
+@TabFontFace: RobotoDraft;
+@TabMarginLeft: 243px;
+@TabTextColor: #ffffff;
+@TabTextColorActive: #000000;
+@TabDistance: 4px;
+@TabPadding: 5px 10px;
+
+// Print tab design
+
+@WidthFileSelectorLeft: 245px; // width of left file selection area
+
+@BigButtonHeight: 30px;
+@SmallButtonHeight: 16px;
+@TrashButtonHeight: 28px;
+
+@LogoTop: 2px;
+@LogoLeft: 4px;
+
+@TextBackground: #ffffff;
+@TextSize: 14px;
+@TextFontFace: RobotoDraft;
+@TextPadding: 10px;
+@TextColor: #000000;
+
+@InnerBorderColor: #dddddd;
+@TableTextColor: #000000;
+@TableBorderColor: #ddd;
+@TableBackgroundColor: #ffffff;
+@TableBackgroundHoverColor: #F5F5F5;
+@HeadlineBackgroundColor: #DDDDDD;
+@DateFontSize: 12px;
+
+// Button designs
+
+@PrimaryButtonBackgoundColor: #428bca;
+@PrimaryButtonBorderColor: #357ebd;
+@PrimaryButtonTextColor: #fff;
+@PrimaryButtonBackgoundColorHover: #3071a9;
+@PrimaryButtonBorderColorHover: #285e8e;
+@PrimaryButtonTextColorHover: #fff;
+
+@DangerButtonBackgoundColor: #d9534f;
+@DangerButtonBorderColor: #d43f3a;
+@DangerButtonTextColor: #fff;
+@DangerButtonBackgoundColorHover: #c9302c;
+@DangerButtonBorderColorHover: #ac2925;
+@DangerButtonTextColorHover: #fff;
+
+@DefaultButtonBackgoundColor: #fff;
+@DefaultButtonBorderColor: #ccc;
+@DefaultButtonTextColor: #333;
+@DefaultButtonBackgoundColorHover: #e6e6e6;
+@DefaultButtonBorderColorHover: #adadad;
+@DefaultButtonTextColorHover: #333;
+
+@SuccessButtonTextColor: #fff;
+@SuccessButtonBackgoundColor: #5cb85c;
+@SuccessButtonBorderColor: #4cae4c;
+@SuccessButtonTextColorHover: #fff;
+@SuccessButtonBackgoundColorHover: #449d44;
+@SuccessButtonBorderColorHover: #398439;
+
+@MoveControlWidth: 350px;
+@CommandslWidth: 350px;
+@SpeedTemperatureControllWidth: 390px;
+
+// Emergency button
+
+@EmergencyStopTop: 1px;
+@EmergencyStopRight: 1px;
+@EmergencyStopHeight: 30px;
+@EmergencyStopWidth: 30px;
+
+@FullscreenTop: 0px;
+@FullscreenRight: 38px;
+@FullscreenFontsize: 26px;
+@FullscreenColor: #000000;
+
+@SquareButtonSize: 36px;
+
+// Switch design
+
+@ButtonOffBackgroundColorDark: #D9534F;
+@ButtonOffBackgroundColorBright: #fff;
+@ButtonOffTextColor: #333;
+@ButtonOffBorderColor: #d43f3a;
+
+@ButtonOnBackgroundColorDark: #3CAA49;
+@ButtonOnBackgroundColorBright: #fff;
+@ButtonOnTextColor: #333;
+@ButtonOnBorderColor: #30883A;
+
+@BigButtonWidthSettings: 300px;
+@BigButtonFontSizeSettings: 20px;
+@BigButtonHeightSettings: 40px;
+@BigButtonHeightMarginTop: 25px;
+
+@SizeKeypadNumbers: 60px;
+@SizeKeypadNumbersFontSize: 24px;
+
+// While printing you see at the left side an info screen. With these values you can add vertical spacing, so that it fills up the complete height.
+@PrintinfoSpacingBlock: 8px;
+@PrintinfoSpacingRow: 2px;
+
+@line-height-computed: 23px;
+@progress-border-radius: 3px;
+@ProgressBarFontSize: 12px;
+//** Background color of the whole progress component
+@progress-bg:                 #f5f5f5;
+//** Progress bar text color
+@progress-bar-color:          #fff;
+//** Variable for setting rounded corners on progress bar.
+@progress-border-radius:      4px;
+//** Default progress bar color
+@progress-bar-bg:             darken(#428bca, 6.5%);
+//** Success progress bar color
+@progress-bar-success-bg:     #5cb85c;
+//** Warning progress bar color
+@progress-bar-warning-bg:     #f0ad4e;
+//** Danger progress bar color
+@progress-bar-danger-bg:      #d9534f;
+//** Info progress bar color
+@progress-bar-info-bg:        #5bc0de;
+
+// Row specing while printing
+@RowMarginBottom: 2px;
+
+//== Dropdowns
+//** Global color for active items (e.g., navs or dropdowns).
+@component-active-color:    #fff;
+//** Global background color for active items (e.g., navs or dropdowns).
+@component-active-bg:       @brand-primary;
+//** Width of the `border` for generating carets that indicator dropdowns.
+@caret-width-base:          4px;
+//** Carets increase slightly in size for larger components.
+@caret-width-large:         5px;
+//** Background for the dropdown menu.
+@dropdown-bg:                    #fff;
+//** Dropdown menu `border-color`.
+@dropdown-border:                rgba(0,0,0,.15);
+//** Dropdown menu `border-color` **for IE8**.
+@dropdown-fallback-border:       #ccc;
+//** Divider color for between dropdown items.
+@dropdown-divider-bg:            #e5e5e5;
+
+//** Dropdown link text color.
+@dropdown-link-color:            @gray-dark;
+//** Hover color for dropdown links.
+@dropdown-link-hover-color:      darken(@gray-dark, 5%);
+//** Hover background for dropdown links.
+@dropdown-link-hover-bg:         #f5f5f5;
+
+//** Active dropdown menu item text color.
+@dropdown-link-active-color:     @component-active-color;
+//** Active dropdown menu item background color.
+@dropdown-link-active-bg:        @component-active-bg;
+
+//** Disabled dropdown menu item background color.
+@dropdown-link-disabled-color:   @gray-light;
+
+//** Text color for headers within dropdown menus.
+@dropdown-header-color:          @gray-light;
+
+
+//== Modals
+//
+//##
+
+//** Padding applied to the modal body
+@modal-inner-padding:         15px;
+
+//** Padding applied to the modal title
+@modal-title-padding:         15px;
+//** Modal title line-height
+@modal-title-line-height:     30px;
+
+//** Background color of modal content area
+@modal-content-bg:                             #fff;
+//** Modal content border color
+@modal-content-border-color:                   rgba(0,0,0,.2);
+//** Modal content border color **for IE8**
+@modal-content-fallback-border-color:          #999;
+
+//** Modal backdrop background color
+@modal-backdrop-bg:           #000;
+//** Modal backdrop opacity
+@modal-backdrop-opacity:      .5;
+//** Modal header border color
+@modal-header-border-color:   #e5e5e5;
+//** Modal footer border color
+@modal-footer-border-color:   @modal-header-border-color;
+
+@modal-lg:                    490px;
+@modal-md:                    600px;
+@modal-sm:                    412px;
+
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+
+@state-success-text:             #3c763d;
+@state-success-bg:               #dff0d8;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+
+@state-info-text:                #31708f;
+@state-info-bg:                  #d9edf7;
+@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+
+@state-warning-text:             #8a6d3b;
+@state-warning-bg:               #fcf8e3;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+@state-danger-text:              #a94442;
+@state-danger-bg:                #f2dede;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+@alert-padding:               15px;
+@alert-border-radius:         @border-radius-base;
+@alert-link-font-weight:      bold;
+
+@alert-success-bg:            @state-success-bg;
+@alert-success-text:          @state-success-text;
+@alert-success-border:        @state-success-border;
+
+@alert-info-bg:               @state-info-bg;
+@alert-info-text:             @state-info-text;
+@alert-info-border:           @state-info-border;
+
+@alert-warning-bg:            @state-warning-bg;
+@alert-warning-text:          @state-warning-text;
+@alert-warning-border:        @state-warning-border;
+
+@alert-danger-bg:             @state-danger-bg;
+@alert-danger-text:           @state-danger-text;
+@alert-danger-border:         @state-danger-border;
+
+@border-radius-large:       6px;
+

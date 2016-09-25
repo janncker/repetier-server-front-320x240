@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="frontapp" ng-strict-di>
+<head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+    Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link type="text/css" rel="stylesheet" href="css/panel.css"/>
+    <link type="text/css" rel="stylesheet" href="../fonts/font-awesome.min.css"/>
+    <title>Repetier-Server Frontend</title>
+    <meta name="description" content="">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/touch-icon-iphone.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/touch-icon-ipad.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/touch-icon-iphone4.png"/>
+</head>
+
+<body ng-controller="FrontController" class="noselect">
+<div class="fullpage">
+    <img src="images/logo800x480.png" class="logo">
+    <ul class="bigtabs">
+        <li ui-sref-active="'active'">
+            <a ui-sref="print" ui-sref-opts="{reload: true}"><i class="fa fa-print"></i> <?php _('Print') ?></a>
+        </li>
+        <li ui-sref-active="'active'">
+            <a ui-sref="control"><i class="fa fa-arrows"></i> <?php _('Manual Control') ?></a>
+        </li>
+        <li ui-sref-active="'active'">
+            <a ui-sref="config" ui-sref-opts="{reload: true}"><i class="fa fa-gear"></i> <?php _('Settings') ?></a>
+        </li>
+    </ul>
+    <div class="content" ui-view=""></div>
+    <a ng-if="serverSettings.frontSetting.showFullscreen" href="javascript:void(0)" onclick="toggleFullscreen(window.document.body)" title="<?php _('Switch to Full Screen') ?>" class="fullscreen"><i class="fa fa-arrows-alt"></i></a>
+<img ng-if="active.status.online && serverSettings.frontSetting.showEmergency" style="cursor:pointer" src="images/emergencystop.png" class="emergencystop" ng-click="emergencyStop()"/>
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.dragscroll.js"></script>
+<script type="text/javascript" src="../js/angular-min.js"></script>
+<script type="text/javascript" src="../js/angular-i18n/angular-locale_<?php _('LANGUAGE') ?>.js"></script>
+<script type="text/javascript" src="../js/qr-min.js"></script>
+<script type="text/javascript" src="../js/basics-min.js"></script>
+<script type="text/javascript" src="routes.js"></script>
+<script type="text/javascript" src="../js/frontapp.js"></script>
+<script type="text/javascript" src="../js/dialogs.js"></script>
+<script type="text/javascript" src="../js/controller.js"></script>
+</body>
+</html>

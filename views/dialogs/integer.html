@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+        <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title" id="myModalLabel" style="text-align:left">
+        <i ng-class="headlineIcon"></i>{{headline}}
+        <a class="anchorjs-link" href="#myModalLabel"><span class="anchorjs-icon"></span></a></h4>
+</div>
+<div class="modal-body" style="margin-left:8px;">
+    <div class="keypadnumbersinput" style="padding:0 14px 0 0;margin:0 auto;">
+        <div class="input-group">
+            <div class="form-control">{{value}}</div>
+            <div class="input-group-addon">{{unit}}</div>
+        </div>
+    </div>
+
+    <br>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('7')">7</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('8')">8</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('9')">9</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addValue(1)"><i class="fa fa-arrow-up"></i></button>
+    <br>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('4')">4</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('5')">5</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('6')">6</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addValue(-1)"><i class="fa fa-arrow-down"></i></button>
+    <br>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('1')">1</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('2')">2</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('3')">3</button>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="delChar()"><i class="rs rs-backspace"></i></button>
+    <br>
+    <button type="button" class="btn btn-default keypadnumbers" ng-click="addChar('0')">0</button>
+    <button type="button" class="btn btn-primary keypadnumbersenter" ng-click="sendValue()" ng-disabled="!valid">
+        <i class="fa fa-level-down fa-rotate-90"></i></button>
+    <br><?php _('Range') ?>: {{range}}
+
+</div>

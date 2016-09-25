@@ -1,0 +1,119 @@
+<div class="settings" dragme>
+
+    <div class="list-group condensed">
+        <div class="list-group-item headline"><i class="fa fa-gear"></i> <?php _('Basic Settings') ?> </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('Language') ?></div>
+                <div class="col-8">
+                    <div uib-dropdown>
+                        <button type="button" class="btn btn-primary btn-trash" uib-dropdown-toggle style="width:100%">
+                            <img ng-src="{{currentLang().flag}}"> {{currentLang().name}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" style="width: 100%;">
+                            <li ng-repeat="l in supportedLanguages">
+                                <a href="javascript:void(0)" ng-click="serverSettings.frontSetting.language=l.id"><img ng-src="{{l.flag}}">
+                                    {{l.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('G-Code Listing') ?></div>
+                <div class="col-8 speed-temperature">
+                    <div class="btn-group">
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listType" uib-btn-radio="0"><i class="fa fa-list"></i> <?php _('Icon') ?>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listType" uib-btn-radio="1"><i class="fa fa-align-justify"></i> <?php _('List') ?>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('G-Code Sorting') ?></div>
+                <div class="col-8 speed-temperature">
+                    <div class="btn-group">
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listSort" uib-btn-radio="0"><i class="fa fa-sort-alpha-asc" style="margin:0 10px;"></i>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listSort" uib-btn-radio="1"><i class="fa fa-sort-alpha-desc" style="margin:0 10px;"></i>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listSort" uib-btn-radio="3"><i class="fa fa-long-arrow-down"></i> <?php _('Newest First') ?>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.listSort" uib-btn-radio="2"><i class="fa fa-long-arrow-down"></i> <?php _('Oldest First') ?>
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('G-Codes per Page') ?></div>
+                <div class="btn btn-icon btn-default speed-temperature col-8" style="width:120px" ng-click="changeListPerPage()">
+                    {{serverSettings.frontSetting.listPerPage}}
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('Emergency Button') ?></div>
+                <div class="col-8 speed-temperature">
+                    <div class="btn-group">
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.showEmergency" uib-btn-radio="true"><i class="fa fa-square"></i> <?php _('Show') ?>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.showEmergency" uib-btn-radio="false"><i class="fa fa-square-o"></i> <?php _('Hide') ?>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('Allow Fullscreen') ?></div>
+                <div class="col-8 speed-temperature">
+                    <div class="btn-group">
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.showFullscreen" uib-btn-radio="true"><i class="fa fa-square"></i> <?php _('Show') ?>
+                        </label>
+                        <label class="btn btn-primary btn-md" ng-model="serverSettings.frontSetting.showFullscreen" uib-btn-radio="false"><i class="fa fa-square-o"></i> <?php _('Hide') ?>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('XY Speed') ?></div>
+                <div class="btn btn-icon btn-default speed-temperature col-8" style="width:120px" ng-click="changeXYSpeed()">
+                    {{activeConfig.movement.xySpeed}} mm/s
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('Z Speed') ?></div>
+                <div class="btn btn-icon btn-default speed-temperature col-8" style="width:120px" ng-click="changeZSpeed()">
+                    {{activeConfig.movement.zSpeed}} mm/s
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item" ng-repeat="e in activeConfig.extruders">
+            <div class="row nomarginbottom">
+                <div class="col-4 speed-temperature"><?php _('Extrusion Speed Extruder') ?> {{$index+1}}</div>
+                <div class="col-8"><div style="float:left" class="speed-temperature"><?php _('Slow') ?>&nbsp;</div>
+                <div class="btn btn-icon btn-default speed-temperature" style="width:120px;float:left" ng-click="changeExtrSlowSpeed($index,0)">
+                    {{e.extrudeSpeed}} mm/s
+                </div>
+                    <div style="float:left" class="speed-temperature">&nbsp;<?php _('Fast') ?>&nbsp;</div>
+                <div class="btn btn-icon btn-default speed-temperature" style="width:120px;float:left" ng-click="changeExtrFastSpeed($index,1)">
+                    {{e.retractSpeed}} mm/s
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

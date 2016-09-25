@@ -1,0 +1,52 @@
+<div class="settings" dragme>
+
+    <div class="list-group condensed">
+        <div ng-repeat="n in ips.ipv4" ng-if="ips.ipv4Support" class="margin-bottom">
+            <div class="list-group-item headline"><i class="fa fa-sitemap"></i> <?php _('Network Interface') ?>
+                {{n.name}}
+            </div>
+            <div class="list-group-item" ng-if="ips.ipv4Support">
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('IP Address') ?></div>
+                    <div class="col-8 speed-temperature">{{n.ip}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('MAC') ?></div>
+                    <div class="col-8 speed-temperature">{{n.mac}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('Web Interface') ?></div>
+                    <div class="col-8 speed-temperature">http://{{n.ip}}:{{ips.port}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('QR Code') ?></div>
+                    <div class="col-8 speed-temperature"><img ng-src="{{qr(n.ip,ips.port)}}"></div>
+                </div>
+            </div>
+        </div>
+        <!--<div ng-repeat="n in ips.ipv6" ng-if="ips.ipv6Support" class="margin-bottom">
+            <div class="list-group-item headline"><i class="fa fa-sitemap"></i> <?php _('Network Interface') ?>
+                {{n.name}}
+            </div>
+            <div class="list-group-item" ng-if="ips.ipv4Support">
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('IP Address') ?></div>
+                    <div class="col-8 speed-temperature">{{n.ip}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('MAC') ?></div>
+                    <div class="col-8 speed-temperature">{{n.mac}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('Web Interface') ?></div>
+                    <div class="col-8 speed-temperature">http://[{{n.ip}}]:{{ips.port}}</div>
+                </div>
+                <div class="row nomarginbottom">
+                    <div class="col-4 speed-temperature"><?php _('QR Code') ?></div>
+                    <div class="col-8 speed-temperature"><img ng-src="{{qr('['+n.ip+']',ips.port)}}"></div>
+                </div>
+            </div>
+        </div>-->
+        <br>
+    </div>
+</div>

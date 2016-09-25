@@ -1,0 +1,343 @@
+<div ng-if="!active.state.isJobActive">
+    <div class="fileselectorleft" dragme>
+        <div ng-hide="active.queue.length==0">
+            <h3><?php _('Print Queue') ?></h3>
+
+            <div ng-if="serverSettings.frontSetting.listType==0">
+                <div class="entry entry-image" ng-repeat="f in active.queue | orderBy:'id'" ng-click="selectGCode(f,1)">
+                    <img ng-src="{{f.imgT}}" style="float:left">
+
+                    <div class="pull-right btn btn-danger btn-trash" ng-click="dequeQueue(f)">
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                    <div class="filename">
+                        {{f.name}}
+                    </div>
+                    <div class="date">
+                        {{f.created | date:'short'}}
+                    </div>
+                </div>
+            </div>
+            <div ng-if="serverSettings.frontSetting.listType==1">
+                <div class="entry" ng-repeat="f in active.queue | orderBy:'id'" ng-click="selectGCode(f,1)">
+                    <div class="pull-right btn btn-danger btn-trash" ng-click="dequeQueue(f)">
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                    <div class="filename">
+                        {{f.name}}
+                    </div>
+                    <div class="date">
+                        {{f.created | date:'short'}}
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 6px"><?php _('Stored G-Codes') ?></h3>
+        </div>
+        <select class="form-control primary-select" ng-model="globals.group[activeSlug]" ng-options="g.id as g.name for g in groups" ng-change="selectGroup()"></select>
+
+        <div ng-if="active.models.length==0" style="text-align: center;margin-top:10px;"><?php _('No models stored!') ?></div>
+        <div ng-if="serverSettings.frontSetting.listType==1">
+            <div class="entry" ng-repeat="f in active.models | slice:serverSettings.frontSetting.listPerPage:listPos" ng-click="selectGCode(f,2)">
+                <div class="filename">
+                    {{f.name}}
+                </div>
+                <div class="date">
+                    {{f.created | date:'short'}}
+                </div>
+            </div>
+        </div>
+        <div ng-if="serverSettings.frontSetting.listType==0">
+            <div class="entry entry-image" ng-repeat="f in active.models | slice:serverSettings.frontSetting.listPerPage:listPos" ng-click="selectGCode(f,2)">
+                <img ng-src="{{f.imgT}}" style="float:left">
+
+                <div class="filename">
+                    {{f.name}}
+                </div>
+                <div class="date">
+                    {{f.created | date:'short'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fileselectorBottom">
+        <div class="btn-group btn-group-justified">
+            <div class="btn btn-primary" ng-disabled="listPos<=0" ng-click="previous()" style="border-radius: 0;line-height:42px;">
+                <i class="fa fa-chevron-circle-left"></i> <?php _('Previous') ?>
+            </div>
+            <div class="btn btn-primary" ng-disabled="listPos+serverSettings.frontSetting.listPerPage >= active.models.length" ng-click="next()" style="border-radius: 0;"><?php _('Next') ?>
+                <i class="fa fa-chevron-circle-right"></i></div>
+        </div>
+    </div>
+    <div class="fileselectorinfo" ng-if="selectSFile" dragme>
+        <h1>
+            <span ng-if="importAsJob"><?php _('Print G-Code') ?></span><span ng-if="!importAsJob"><?php _('Import G-Code') ?></span>
+            <div class="btn btn-danger btn-xs pull-right" ng-click="deselectGCode()"><i class="fa fa-close rs-big"></i>
+            </div>
+        </h1>
+        <label>Folder {{selectedFolder}}</label>
+        <select class="form-control" ng-model="bfolder.selectedFolder" ng-options="f.id as f.name for f in folders" ng-change="selectedFolderChanged()"></select>
+        <div class="margin-top">
+            <label class="checkbox" style="margin-left:20px"><input type="checkbox" ng-model="bfolder.useFilter" ng-change="bfolder.updateFilter()"><?php _('Filter Wrong File Types') ?>
+            </label>
+        </div>
+        <h3>Path: {{bfolder.activeFolderPath}}</h3>
+        <table class="table table-hover">
+            <tr>
+                <th style="width:50px"></th>
+                <th><?php _('File') ?></th>
+                <th style="text-align: right"><?php _('Size') ?></th>
+            </tr>
+            <tr ng-repeat="p in bfolder.filesInPath" ng-dblclick="importFolderPath(p)" ng-click="bfolder.toggleSelectFile(p)">
+                <td>
+                    <input ng-if="!p.isDir" type="checkbox" ng-model="p.selected" ng-click="bfolder.toggleSelectFile(p)">
+                </td>
+                <td>
+                    <i ng-class="p.icon"></i> {{p.name}}
+                </td>
+                <td style="text-align: right"><span ng-if="!p.isDir">{{p.size | byte}}</span></td>
+            </tr>
+        </table>
+        <div class="btn btn-primary" ng-click="importSelectedFiles()">
+            <span ng-if="importAsJob"><i class="rs rs-print rs-bigtab"></i> <?php _('Print') ?></span><span ng-if="!importAsJob"><?php _('Import Selected') ?></span>
+        </div>
+        <div class="btn btn-default pull-right" ng-click="abortFileSelection()"><?php _('Cancel') ?></div>
+        <div class="alert alert-info margin-top">
+            <i class="fa fa-info-circle fa-2x"></i> <?php _('Use double click to import a single file.') ?></div>
+    </div>
+
+    <div class="fileselectorinfo" ng-if="!selectSFile && !activeGCType" dragme>
+        <div ng-if="folders.length>0" style="margin-bottom: 10px">
+            <h2><?php _('Upload or Print G-Code') ?></h2>
+            <table class="table table-hover">
+                <tr ng-repeat="f in folders">
+                    <td>{{f.name}}</td>
+                    <td style="text-align: right;width:140px">
+                        <div class="btn btn-primary btn-xs" style="padding:0 20px" ng-click="importPath(f,false)">
+                            <i class="fa fa-upload rs-big"></i></div>
+                        <div class="btn btn-primary btn-xs" style="padding:0 20px" ng-click="importPath(f,true)">
+                            <i class="rs rs-print rs-big"></i></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="alert alert-info" role="alert" style="margin-top:15px"><h3 style="padding-left:0">
+            <i class="fa fa-info-circle"></i> <?php _('Information') ?></h3>
+            <?php _('New models and complex settings can be managed via the web interface. This interface only supports primary controls and settings.') ?>
+
+            <div ng-if="serverSettings.externalAccess.domain" class="margin-bottom" style="margin-top:15px;">
+                <?php _('Web Interface') ?>: {{httpType}}://{{serverSettings.externalAccess.domain}}:{{serverSettings.externalAccess.port}}
+
+                <div style="text-align:center;margin-top:30px;">
+                    <img ng-src="{{qr(serverSettings.externalAccess.domain,serverSettings.externalAccess.port,2,7)}}"></div>
+            </div>
+
+            <div ng-repeat="n in ips.ipv4 | limitTo:1" ng-if="ips.ipv4Support" class="margin-bottom" style="margin-top:15px;">
+                <?php _('Web Interface') ?>: {{httpType}}://{{n.ip}}:{{ips.port}}
+
+                <div style="text-align:center;margin-top:30px;" ng-if="$index==0">
+                    <img ng-src="{{qr(n.ip,ips.port,2,7)}}"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="fileselectorinfo" ng-if="!selectSFile && activeGCType" dragme>
+        <h3>{{activeGCode.name}}</h3>
+
+        <div class="btn btn-danger pull-right btn-trash" ng-click="deselectGCode()"><i class="fa fa-close"></i></div>
+        <div class="btn btn-trash btn-primary" style="width:70%" ng-click="printGCode(activeGCode,activeGCType)">
+            <i class="fa fa-print"></i> <?php _('Print') ?>
+        </div>
+        <div class="btn btn-danger btn-trash" style="margin-left: 20px" ng-click="removeGCode(activeGCode,activeGCType)">
+            <i class="fa fa-trash-o"></i>
+        </div>
+        <div style="margin-top:10px;text-align:center;">
+            <img ng-src="{{activeGCode.imgL}}" style="max-width: 70%" class="pointer" ng-click="fullsizeImage(activeGCode.imgL)">
+        </div>
+        <h3><?php _('Analysis') ?></h3>
+
+        <div ng-if="!activeGCode.lines">
+            <strong><?php _('Computing Analysis Data ...') ?></strong>
+        </div>
+        <div ng-if="activeGCode.lines">
+            <div class="list-group condensed">
+                <div class="list-group-item"> <?php _('Printing Time') ?> <span class="pull-right">{{activeGCode.printTime | dhms}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Total Price') ?> <span class="pull-right">{{total | number:2}} {{currency}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Filament') ?> <span class="pull-right">{{activeGCode.filamentTotal | number:1}} mm</span>
+                </div>
+                <div class="list-group-item"> <?php _('Volume') ?> <span class="pull-right">{{(activeGCode.volumeTotal / 1000)| number:1}} cm<sup>3</sup></span>
+                </div>
+                <div class="list-group-item"> <?php _('Weight') ?>
+                    <span class="pull-right">{{weightTotal | number:1}} g</span></div>
+                <div class="list-group-item"> <?php _('Lines') ?> <span class="pull-right">{{activeGCode.lines}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Layer') ?> <span class="pull-right">{{activeGCode.layer}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Printed') ?>
+                    <span class="pull-right">{{activeGCode.printed}} <?php _('times') ?></span>
+                </div>
+                <div class="list-group-item"> <?php _('Uploaded') ?> <span class="pull-right">{{activeGCode.created | date:'short'}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('File Length') ?> <span class="pull-right">{{activeGCode.length | byte}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Slicer') ?>
+                    <span class="pull-right">{{activeGCode.slicer}}</span></div>
+                <div class="list-group-item"> <?php _('Volumetric Extrusion') ?> <span class="pull-right">{{activeGCode.volumetric | yesno}}</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 10px"><?php _('Per Extruder Values') ?></h3>
+
+            <div class="list-group condensed margin-bottom" ng-repeat="e in plist track by $index">
+                <div class="list-group-item headline"><i class="rs rs-extruder"></i> <?php _('Extruder') ?>
+                    {{e.extruder}}
+                </div>
+                <div class="list-group-item"> <?php _('Filament') ?>
+                    <span class="pull-right"><div class="btn btn-default btn-xs" style="margin-top:-4px" ng-click="selectFilament($index)">
+                        {{e.filament.n}}
+                    </div></span>
+                </div>
+                <div class="list-group-item"> <?php _('Length') ?> <span class="pull-right">{{e.mm | number:0}}</span>
+                </div>
+                <div class="list-group-item"> <?php _('Volume') ?>
+                    <span class="pull-right">{{e.volume | number:1}} cm<sup>3</sup></span>
+                </div>
+                <div class="list-group-item"> <?php _('Weight') ?>
+                    <span class="pull-right">{{e.weight | number:1}} g</span>
+                </div>
+                <div class="list-group-item"> <?php _('Material Costs') ?> <span class="pull-right">{{e.price | number:2}} {{currency}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="active.state.isJobActive">
+    <div style="padding:15px" class="rowprint">
+        <div class="list-group col-6" id="printinfo" style="height:390px;overflow:scroll">
+            <div dragme>
+                <div class="list-group-item headline"> <?php _('Printing:') ?> {{active.status.job}}</div>
+
+                <div class="list-group-item rowprint extra">
+                    <div class="col-6 center">
+                        <div class="btn btn-trash btn-danger" style="width:70%" ng-click="stopPrint()">
+                            <i class="fa fa-stop"></i> <?php _('Stop') ?></div>
+                    </div>
+                    <div class="col-6 center">
+                        <div ng-if="!active.status.paused" class="btn btn-trash btn-primary" style="width:70%" ng-click="pausePrint()">
+                            <i class="fa fa-pause"></i> <?php _('Pause') ?>
+                        </div>
+                        <div ng-if="active.status.paused" class="btn btn-trash btn-primary" style="width:70%" ng-click="unpausePrint()">
+                            <i class="fa fa-play"></i> <?php _('Continue') ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group-item extra">
+                    <div class="progress" style="margin:7px 0;">
+                        <div class="metertext" style="bottom:18px;font-size:15px;">{{active.status.done | number:2}}%
+                        </div>
+                        <div class="progress-bar progress-bar-success active" role="progressbar" style="width:{{active.status.done}}%">
+                            <!-- <span class="sr-only">{{active.status.done | number:2}}%</span>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group-item extra">
+                    <div class="row">
+                        <div class="col-1 center"><i class="fa fa-clock-o"></i></div>
+                        <div class="col-4"><?php _('ETA') ?></div>
+                        <div class="col-7">{{(stateTime + 1000*(active.status.printTime-active.status.printedTimeComp))
+                            | date:'short'}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-1 center"><i class="fa fa-clock-o"></i></div>
+                        <div class="col-4"><?php _('ETE') ?></div>
+                        <div class="col-7">{{active.status.printTime-active.status.printedTimeComp | hms}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 center"><i class="fa fa-arrow-up"></i></div>
+                        <div class="col-4"><?php _('Z Position') ?></div>
+                        <div class="col-7">{{active.state.z | number:2}} mm</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 center"><i class="fa fa-bars"></i></div>
+                        <div class="col-4"><?php _('Layer') ?></div>
+                        <div class="col-7">{{active.state.layer}} / {{active.status.ofLayer}}</div>
+                    </div>
+                </div>
+
+                <div class="list-group-item extra">
+
+                    <div class="row">
+                        <div class="col-1 center"><i class="rs rs-speed"></i></div>
+                        <div class="col-5 speed-temperature"><?php _('Speed') ?></div>
+                        <div class="col-3 speed-temperature"></div>
+                        <div class="col-3">
+                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeSpeed()">
+                                {{active.state.speedMultiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 center"><i class="rs rs-flow"></i></div>
+                        <div class="col-5 speed-temperature"><?php _('Flow') ?></div>
+                        <div class="col-3 speed-temperature"></div>
+                        <div class="col-3">
+                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeFlow()">
+                                {{active.state.flowMultiply}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1 center"><i class="rs rs-fan"></i></div>
+                        <div class="col-5 speed-temperature"><?php _('Fan') ?></div>
+                        <div class="col-3 speed-temperature"></div>
+                        <div class="col-3">
+                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeFanSpeed()">
+                                {{active.state.fanPercent}}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="e in active.state.extruder">
+                        <div class="col-1 center"><i class="rs rs-extruder"></i></div>
+                        <div class="col-5 speed-temperature bold"><?php _('Extruder') ?> {{$index+1}}</div>
+                        <div class="col-3 speed-temperature" style="text-align: right">{{e.tempRead | number:1}}°C
+                            |&nbsp;</div>
+                        <div class="col-3">
+                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeExtruderTemp($index,e)">
+                                {{e.tempSet}}°C
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="activeConfig.general.heatedBed">
+                        <div class="col-1 center"><i class="rs rs-heated-bed"></i></div>
+                        <div class="col-5 speed-temperature"><?php _('Bed') ?></div>
+                        <div class="col-3 speed-temperature" style="text-align: right">{{active.state.heatedBed.tempRead
+                            |
+                            number:1}}°C |&nbsp;</div>
+                        <div class="col-3">
+                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeBedTemp()">
+                                {{active.state.heatedBed.tempSet}}°C
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div style="margin-left:15px;text-align:center;">
+                <img ng-src="{{RSPrinter.printingImage('l')}}" style="width:80%;" class="pointer" ng-click="fullsizeImage(RSPrinter.printingImage('l'))">
+
+                <h2 style="text-align: left"><?php _('Current Extruder Temperatures') ?></h2>
+
+                <div style="padding-left:15px;padding-right:15px">
+                    <temp-chart history="active.state.extruder[active.state.activeExtruder].history" style="height:170px;"></temp-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
