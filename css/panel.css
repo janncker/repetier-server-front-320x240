@@ -81,12 +81,12 @@ body {
 }
 .fullpage {
   background: linear-gradient(#F4F4F4, #B1B1B1);
-  background-size: 800px 480px;
+  background-size: 320px 240px;
   background-attachment: fixed;
   overflow: hidden;
   padding: 0px;
-  width: 800px;
-  height: 480px;
+  width: 320px;
+  height: 240px;
   position: relative;
   margin: 0 auto;
 }
@@ -99,7 +99,7 @@ h2 {
   margin: 10px 0 0 0;
 }
 h3 {
-  font-size: 16px;
+  font-size: 12px;
   margin: 10px 0 0 0;
 }
 a {
@@ -107,15 +107,15 @@ a {
   text-decoration: none;
 }
 .bigtabs {
-  font: bold 14px RobotoDraft;
+  font: bold 9px RobotoDraft;
   list-style-type: none;
   margin: 0;
-  padding: 0 0 32px 243px;
+  padding: 0 0 23px 3px;
   border-bottom: 1px solid #404040;
 }
 .bigtabs li {
   float: left;
-  height: 29px;
+  height: 19px;
   background-color: #595959;
   margin: 2px 2px 0 2px;
   border: 1px solid #404040;
@@ -159,8 +159,8 @@ a {
   color: #000000;
 }
 .modal-fit {
-  max-width: 800px;
-  max-height: 480px;
+  max-width: 320px;
+  max-height: 230px;
   width: auto;
   margin: auto auto;
   position: fixed;
@@ -170,18 +170,18 @@ a {
   bottom: 0;
 }
 .modal-fit img {
-  max-height: 480px;
-  max-width: 800px;
+  max-height: 320px;
+  max-width: 240px;
 }
 .modal-fit .modal-content {
   border: 0;
   border-radius: 0;
-  max-height: 480px;
+  max-height: 230px;
 }
 .modal-fit .modal-body {
   padding: 0 !important;
   text-align: center;
-  max-height: 480px;
+  max-height: 230px;
 }
 .pointer {
   cursor: pointer;
@@ -200,9 +200,9 @@ a {
   border-style: solid;
   padding: 0;
   background-color: #ffffff;
-  font: 14px RobotoDraft;
+  font: 8px RobotoDraft;
   color: #000000;
-  height: 447px;
+  height: 220px;
   overflow: hidden;
 }
 .logo {
@@ -220,18 +220,18 @@ a {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 245px;
+  width: 130px;
   border-right: 1px solid #dddddd;
 }
 .fileselectorleft {
   display: block;
   float: left;
-  width: 245px;
+  width: 130px;
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid #dddddd;
   padding: 0;
-  height: 403px;
+  height: 230px;
   margin: 0;
 }
 .fileselectorleft h3 {
@@ -277,24 +277,24 @@ a {
 .fileselectorinfo {
   display: block;
   float: right;
-  width: 510px;
-  height: 445px;
+  width: 185px;
+  height: 220px;
   margin: 0 0px;
-  padding-right: 15px;
+  padding-right: 0px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 .fileselectorinfo h3 {
-  padding: 10px 0px 10px 17px;
+  padding: 1px 0px 1px 1px;
   margin: 0;
 }
 .margin-top {
-  margin-top: 10px;
+  margin-top: 1px;
 }
 .move-control {
-  width: 350px;
+  width: 190px;
   float: left;
-  padding: 15px;
+  padding: 1px;
 }
 .commands {
   width: 350px;
@@ -302,19 +302,19 @@ a {
   padding: 15px;
 }
 .speed-temperature-controls {
-  width: 390px;
+  width: 120px;
   float: left;
-  padding: 15px;
+  padding: 3px;
 }
 .row {
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 #printinfo .row {
   padding: 2px 0;
 }
 #printinfo .extra {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .col-1 {
   width: 8.333333333%;
@@ -323,7 +323,7 @@ a {
   width: 16.66666666%;
 }
 .col-3 {
-  width: 25%;
+  width: 15%;
 }
 .col-4 {
   width: 33.33333333%;
@@ -391,9 +391,9 @@ a {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  padding: 0px 12px;
-  font-size: 14px;
-  line-height: 30px;
+  padding: 0px 3px;
+  font-size: 7px;
+  line-height: 15px;
   -webkit-border-top-left-radius: 7px;
   -moz-border-top-left-radius: 7px;
   border-top-left-radius: 7px;
@@ -463,8 +463,8 @@ a {
 .btn-trash {
   padding: 0px 7px;
   margin: 2px;
-  font-size: 16px;
-  line-height: 28px;
+  font-size: 8px;
+  line-height: 15px;
   -webkit-border-top-left-radius: 7px;
   -moz-border-top-left-radius: 7px;
   border-top-left-radius: 7px;
@@ -478,9 +478,9 @@ a {
   -moz-border-bottom-right-radius: 7px;
   border-bottom-right-radius: 7px;
 }
-.btn-icon {
+.btn-icon{
   padding: 0px 7px;
-  font-size: 18px;
+  font-size: 8px;
   line-height: 16px;
   -webkit-border-top-left-radius: 7px;
   -moz-border-top-left-radius: 7px;
@@ -771,7 +771,7 @@ div {
   color: #000000;
 }
 .speed-temperature {
-  line-height: 26px;
+  line-height: 19px;
   vertical-align: middle;
 }
 .bold {
@@ -1146,16 +1146,16 @@ button.close {
   border-top-right-radius: 0;
 }
 .iconwidth {
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
   text-align: center;
   vertical-align: middle;
 }
 .settings {
-  padding: 15px;
+  padding: 10px;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 417px;
+  height: 220px;
 }
 .nomarginbottom {
   margin-bottom: 0;
@@ -1240,8 +1240,8 @@ button.close {
   margin-bottom: 30px;
 }
 .primary-select {
-  font-size: 14px;
-  height: 44px;
+  font-size: 9px;
+  height: 20px;
   border-radius: 0;
   background: #337ab7;
   color: #ffffff;

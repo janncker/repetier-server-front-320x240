@@ -144,10 +144,10 @@
         <h3>{{activeGCode.name}}</h3>
 
         <div class="btn btn-danger pull-right btn-trash" ng-click="deselectGCode()"><i class="fa fa-close"></i></div>
-        <div class="btn btn-trash btn-primary" style="width:70%" ng-click="printGCode(activeGCode,activeGCType)">
+        <div class="btn btn-trash btn-primary" style="width:40%" ng-click="printGCode(activeGCode,activeGCType)">
             <i class="fa fa-print"></i> <?php _('Print') ?>
         </div>
-        <div class="btn btn-danger btn-trash" style="margin-left: 20px" ng-click="removeGCode(activeGCode,activeGCType)">
+        <div class="btn btn-danger btn-trash" style="margin-left: 10px" ng-click="removeGCode(activeGCode,activeGCType)">
             <i class="fa fa-trash-o"></i>
         </div>
         <div style="margin-top:10px;text-align:center;">
@@ -214,29 +214,29 @@
 </div>
 
 <div ng-if="active.state.isJobActive">
-    <div style="padding:15px" class="rowprint">
-        <div class="list-group col-6" id="printinfo" style="height:390px;overflow:scroll">
+    <div style="padding:3px" class="rowprint">
+        <div class="list-group col-6" id="printinfo" style="height:150px;">
             <div dragme>
                 <div class="list-group-item headline"> <?php _('Printing:') ?> {{active.status.job}}</div>
 
                 <div class="list-group-item rowprint extra">
                     <div class="col-6 center">
-                        <div class="btn btn-trash btn-danger" style="width:70%" ng-click="stopPrint()">
-                            <i class="fa fa-stop"></i> <?php _('Stop') ?></div>
+                        <div class="btn btn-trash btn-danger" style="width:50%" ng-click="stopPrint()">
+                             <?php _('Stop') ?></div>
                     </div>
                     <div class="col-6 center">
-                        <div ng-if="!active.status.paused" class="btn btn-trash btn-primary" style="width:70%" ng-click="pausePrint()">
-                            <i class="fa fa-pause"></i> <?php _('Pause') ?>
+                        <div ng-if="!active.status.paused" class="btn btn-trash btn-primary" style="width:50%" ng-click="pausePrint()">
+                            <?php _('Pause') ?>
                         </div>
-                        <div ng-if="active.status.paused" class="btn btn-trash btn-primary" style="width:70%" ng-click="unpausePrint()">
-                            <i class="fa fa-play"></i> <?php _('Continue') ?>
+                        <div ng-if="active.status.paused" class="btn btn-trash btn-primary" style="width:50%" ng-click="unpausePrint()">
+                            </i> <?php _('Continue') ?>
                         </div>
                     </div>
                 </div>
 
                 <div class="list-group-item extra">
                     <div class="progress" style="margin:7px 0;">
-                        <div class="metertext" style="bottom:18px;font-size:15px;">{{active.status.done | number:2}}%
+                        <div class="metertext" style="bottom:10px;font-size:12px;">{{active.status.done | number:2}}%
                         </div>
                         <div class="progress-bar progress-bar-success active" role="progressbar" style="width:{{active.status.done}}%">
                             <!-- <span class="sr-only">{{active.status.done | number:2}}%</span>-->
@@ -258,86 +258,18 @@
                         <div class="col-4"><?php _('ETE') ?></div>
                         <div class="col-7">{{active.status.printTime-active.status.printedTimeComp | hms}}</div>
                     </div>
-                    <div class="row">
-                        <div class="col-1 center"><i class="fa fa-arrow-up"></i></div>
-                        <div class="col-4"><?php _('Z Position') ?></div>
-                        <div class="col-7">{{active.state.z | number:2}} mm</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 center"><i class="fa fa-bars"></i></div>
-                        <div class="col-4"><?php _('Layer') ?></div>
-                        <div class="col-7">{{active.state.layer}} / {{active.status.ofLayer}}</div>
-                    </div>
                 </div>
 
-                <div class="list-group-item extra">
-
-                    <div class="row">
-                        <div class="col-1 center"><i class="rs rs-speed"></i></div>
-                        <div class="col-5 speed-temperature"><?php _('Speed') ?></div>
-                        <div class="col-3 speed-temperature"></div>
-                        <div class="col-3">
-                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeSpeed()">
-                                {{active.state.speedMultiply}}%
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 center"><i class="rs rs-flow"></i></div>
-                        <div class="col-5 speed-temperature"><?php _('Flow') ?></div>
-                        <div class="col-3 speed-temperature"></div>
-                        <div class="col-3">
-                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeFlow()">
-                                {{active.state.flowMultiply}}%
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-1 center"><i class="rs rs-fan"></i></div>
-                        <div class="col-5 speed-temperature"><?php _('Fan') ?></div>
-                        <div class="col-3 speed-temperature"></div>
-                        <div class="col-3">
-                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeFanSpeed()">
-                                {{active.state.fanPercent}}%
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-repeat="e in active.state.extruder">
-                        <div class="col-1 center"><i class="rs rs-extruder"></i></div>
-                        <div class="col-5 speed-temperature bold"><?php _('Extruder') ?> {{$index+1}}</div>
-                        <div class="col-3 speed-temperature" style="text-align: right">{{e.tempRead | number:1}}°C
-                            |&nbsp;</div>
-                        <div class="col-3">
-                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeExtruderTemp($index,e)">
-                                {{e.tempSet}}°C
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-if="activeConfig.general.heatedBed">
-                        <div class="col-1 center"><i class="rs rs-heated-bed"></i></div>
-                        <div class="col-5 speed-temperature"><?php _('Bed') ?></div>
-                        <div class="col-3 speed-temperature" style="text-align: right">{{active.state.heatedBed.tempRead
-                            |
-                            number:1}}°C |&nbsp;</div>
-                        <div class="col-3">
-                            <div class="btn btn-icon btn-default speed-temperature" style="width:84px" ng-click="changeBedTemp()">
-                                {{active.state.heatedBed.tempSet}}°C
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="col-6">
-            <div style="margin-left:15px;text-align:center;">
-                <img ng-src="{{RSPrinter.printingImage('l')}}" style="width:80%;" class="pointer" ng-click="fullsizeImage(RSPrinter.printingImage('l'))">
-
-                <h2 style="text-align: left"><?php _('Current Extruder Temperatures') ?></h2>
-
-                <div style="padding-left:15px;padding-right:15px">
-                    <temp-chart history="active.state.extruder[active.state.activeExtruder].history" style="height:170px;"></temp-chart>
-                </div>
+            <div style="margin-left:1px;margin-top:30px;text-align:center;">
+                <img ng-src="{{RSPrinter.printingImage('l')}}" style="width:100%;" class="pointer" ng-click="fullsizeImage(RSPrinter.printingImage('l'))">
             </div>
         </div>
-    </div>
+                <div style="padding-left:1px;padding-right:1px;padding-top:145px;">
+                    <temp-chart history="active.state.extruder[active.state.activeExtruder].history" style="height:80px;"></temp-chart>
+                </div>
+
+</div>
 </div>

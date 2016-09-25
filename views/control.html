@@ -22,7 +22,7 @@
                 <div class="margin-top">
                     <button class="btn btn-default iconwidth" ng-disabled="printing" ng-click="xMoveRel(-moveDistance)">
                         <i class="fa fa-arrow-left"></i></button>
-                    <span style="display: inline-block;width:60px">X/Y</span>
+                    <span style="display: inline-block;width:30px">X/Y</span>
                     <button class="btn btn-default iconwidth" ng-disabled="printing" ng-click="xMoveRel(moveDistance)">
                         <i class="fa fa-arrow-right"></i></button>
                 </div>
@@ -38,7 +38,7 @@
                         <i class="fa fa-arrow-up"></i></button>
                 </div>
                 <div class="margin-top">
-                    <span style="display: inline-block;width: 60px;height: 44px;vertical-align: middle;line-height: 44px">Z</span>
+                    <span style="display: inline-block;width: 30px;height: 20px;vertical-align: middle;line-height: 20px">Z</span>
                 </div>
                 <div class="margin-top">
                     <button class="btn btn-default iconwidth" ng-disabled="printing" ng-click="zMoveRel(-moveDistance)">
@@ -54,7 +54,7 @@
                         <i class="fa fa-backward fa-rotate-90"></i></button>
                 </div>
                 <div class="margin-top">
-                    <span style="display: inline-block;width: 60px;height: 44px;vertical-align: middle;line-height: 44px"><i class="rs rs-extruder"></i> 1</span>
+                    <span style="display: inline-block;width: 30px;height: 20px;vertical-align: middle;line-height: 20px"><i class="rs rs-extruder"></i> 1</span>
                 </div>
                 <div class="margin-top">
                     <button class="btn btn-default iconwidth" ng-disabled="printing" ng-click="RSPrinter.eMoveRel(moveDistance, activeConfig.extruders[active.state.activeExtruder].extrudeSpeed)">
@@ -96,76 +96,50 @@
 
 
     <div class="speed-temperature-controls">
-        <div uib-dropdown class="margin-bottom" style="position: relative">
-            <button type="button" class="btn btn-primary btn-trash" uib-dropdown-toggle style="width:100%">
-                 <?php _('Commands') ?> <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" style="width: 100%;">
-                <li ng-repeat="c in activeConfig.quickCommands">
-                    <a href="javascript:void(0)" ng-click="RSPrinter.sendGCode(c.command)">{{c.name}}</a>
-                </li>
-            </ul>
-        </div>
         <div class="row">
             <div class="col-1 center"><i class="rs rs-speed"></i></div>
-            <div class="col-3 speed-temperature"><?php _('Speed') ?></div>
             <div class="col-3 speed-temperature"></div>
             <div class="col-3">
-                <div class="btn btn-icon btn-default speed-temperature" style="width:70px" ng-click="changeSpeed()">
+                <div class="btn btn-icon btn-default speed-temperature" style="width:37px" ng-click="changeSpeed()">
                     {{active.state.speedMultiply}}%
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-1 center"><i class="rs rs-flow"></i></div>
-            <div class="col-3 speed-temperature"><?php _('Flow') ?></div>
-            <div class="col-3 speed-temperature"></div>
-            <div class="col-3">
-                <div class="btn btn-icon btn-default speed-temperature" style="width:70px" ng-click="changeFlow()">
-                    {{active.state.flowMultiply}}%
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-1 center"><i class="rs rs-fan"></i></div>
-            <div class="col-3 speed-temperature"><?php _('Fan') ?></div>
             <div class="col-3 speed-temperature"></div>
             <div class="col-3">
-                <div class="btn btn-icon btn-default speed-temperature" style="width:70px" ng-click="changeFanSpeed()">
+                <div class="btn btn-icon btn-default speed-temperature" style="width:37px" ng-click="changeFanSpeed()">
                     {{active.state.fanPercent}}%
                 </div>
             </div>
             <div class="col-2">
-                <feswitch ng-model="active.state.fanOn" changed="RSPrinter.setFanOn(value)"></feswitch>
+                <feswitch ng-model="active.state.fanOn" changed="RSPrinter.setFanOn(value)" style="padding-left:50px;"></feswitch>
             </div>
         </div>
         <div class="row" ng-repeat="e in active.state.extruder track by $index">
             <div class="col-1 center"><i class="rs rs-extruder"></i></div>
-            <div class="col-3 speed-temperature"><div style="font-size:14px" class="btn btn-default btn-md" ng-disabled="printing" ng-click="RSPrinter.selectExtruder($index)" ng-class="{bold:active.state.activeExtruder==$index}"> <?php _('Extruder') ?>
-                {{$index+1}}</div>
+            <div class="col-3 speed-temperature">
             </div>
-            <div class="col-3 speed-temperature" style="text-align: right">{{e.tempRead | number:1}}°C |&nbsp;</div>
             <div class="col-3">
-                <div class="btn btn-icon btn-default speed-temperature" style="width:70px" ng-click="changeExtruderTemp($index,e)">
+                <div class="btn btn-icon btn-default speed-temperature" style="width:37px" ng-click="changeExtruderTemp($index,e)">
                     {{e.tempSet}}°C
                 </div>
             </div>
-            <div class="col-2">
-                    <div class="btn btn-danger btn-icon speed-temperature" style="display:block" ng-click="disableExtruder($index)"><i class="fa fa-power-off"></i></div>
-            </div>
+		<div class="col-3 speed-temperature" style="padding-left:37px;text-align: right">{{e.tempRead | number:1}}°C </div>
+
+
         </div>
         <div class="row" ng-if="activeConfig.general.heatedBed">
             <div class="col-1 center"><i class="rs rs-heated-bed"></i></div>
-            <div class="col-3 speed-temperature"><?php _('Bed') ?></div>
-            <div class="col-3 speed-temperature" style="text-align: right">{{active.state.heatedBed.tempRead |
-                number:1}}°C |&nbsp;</div>
-            <div class="col-3">
-                <div class="btn btn-icon btn-default speed-temperature" style="width:70px" ng-click="changeBedTemp()">
+            <div class="col-3" style="padding-left:17px">
+                <div class="btn btn-icon btn-default speed-temperature" style="width:37px" ng-click="changeBedTemp()">
                     {{active.state.heatedBed.tempSet}}°C
                 </div>
             </div>
-            <div class="col-2">
-                <div class="btn btn-danger btn-icon speed-temperature" style="display:block" ng-click="disableBed($index)"><i class="fa fa-power-off"></i></div>
-            </div>
+            <div class="col-3 speed-temperature" style="padding-left:37px;text-align: right">{{active.state.heatedBed.tempRead |
+                number:1}}°C</div>
+
         </div>
 
     </div>
@@ -173,7 +147,7 @@
         
     </div>
     <div style="padding-left:15px;padding-right:15px;margin-top:-10px;position:relative;"><div style="position:absolute;left:73px;top:8px;"><?php _('Current Extruder') ?> {{active.state.activeExtruder+1}}</div>
-        <temp-chart history="active.state.extruder[active.state.activeExtruder].history" style="height:130px;"></temp-chart>
+        <temp-chart history="active.state.extruder[active.state.activeExtruder].history" style="height:95px;"></temp-chart>
     </div>
 
 </div>
