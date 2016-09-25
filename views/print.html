@@ -120,22 +120,20 @@
                 </tr>
             </table>
         </div>
-        <div class="alert alert-info" role="alert" style="margin-top:15px"><h3 style="padding-left:0">
+        <div class="alert alert-info" role="alert" style="margin-top:5px"><h3 style="padding-left:0">
             <i class="fa fa-info-circle"></i> <?php _('Information') ?></h3>
-            <?php _('New models and complex settings can be managed via the web interface. This interface only supports primary controls and settings.') ?>
-
             <div ng-if="serverSettings.externalAccess.domain" class="margin-bottom" style="margin-top:15px;">
                 <?php _('Web Interface') ?>: {{httpType}}://{{serverSettings.externalAccess.domain}}:{{serverSettings.externalAccess.port}}
 
                 <div style="text-align:center;margin-top:30px;">
-                    <img ng-src="{{qr(serverSettings.externalAccess.domain,serverSettings.externalAccess.port,2,7)}}"></div>
+                    <img ng-src="{{qr(serverSettings.externalAccess.domain,serverSettings.externalAccess.port,2,5)}}"></div>
             </div>
 
-            <div ng-repeat="n in ips.ipv4 | limitTo:1" ng-if="ips.ipv4Support" class="margin-bottom" style="margin-top:15px;">
+            <div ng-repeat="n in ips.ipv4 | limitTo:1" ng-if="ips.ipv4Support" class="margin-bottom" style="margin-top:4px;">
                 <?php _('Web Interface') ?>: {{httpType}}://{{n.ip}}:{{ips.port}}
 
-                <div style="text-align:center;margin-top:30px;" ng-if="$index==0">
-                    <img ng-src="{{qr(n.ip,ips.port,2,7)}}"></div>
+                <div style="text-align:center;margin-top:10px;" ng-if="$index==0">
+                    <img ng-src="{{qr(n.ip,ips.port,2,4)}}"></div>
             </div>
             <div class="clearfix"></div>
         </div>
